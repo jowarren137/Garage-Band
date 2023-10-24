@@ -7,7 +7,7 @@ CSC 600 musical application. Get ready to shred.
 You will need Node v16.17.0. You can also try upgrading the libraries!
 
 ## Getting Started
-Note that there are no installed dependencies so you will get an error if you run `npm run`. To get started, do `npm install` to add necessary node packages. After, you can proceed like normal (start coding). Please do not push `node_modules` into the repository! - Timothy Lor
+Note that there are no installed dependencies so you will get an error if you run `npm start`. To get started, do `npm install` to add necessary node packages. After, you can proceed like normal (start coding). Please do not push `node_modules` into the repository! - Timothy Lor
 
 ## Client
 
