@@ -1,5 +1,6 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/DhlVqdzG)
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=12506220&assignment_repo_type=AssignmentRepo)
+
 # LamdbaVibe
 
 CSC 600 musical application. Get ready to shred.
@@ -7,6 +8,7 @@ CSC 600 musical application. Get ready to shred.
 You will need Node v16.17.0. You can also try upgrading the libraries!
 
 ## Getting Started
+
 Note that there are no installed dependencies so you will get an error if you run `npm start`. To get started, do `npm install` to add necessary node packages. After, you can proceed like normal (start coding). Please do not push `node_modules` into the repository! - Timothy Lor
 
 ## Client
