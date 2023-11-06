@@ -31,8 +31,8 @@ export function GuitarKey({
       onMouseDown={() => synth?.triggerAttack(`${note}`)}
       onMouseUp={() => synth?.triggerRelease('+0.25')}
       className={classNames('ba pointer absolute dim h1', {
-        'bg-black black': index % 2 === 0,
-        'bg-white black': index % 2 === 1,
+        'bg-gray black': index % 2 === 0,
+        'bg-black-80 black': index % 2 === 1,
       })}
       style={{
         top: `${index}rem`,
