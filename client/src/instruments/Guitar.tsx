@@ -24,6 +24,7 @@ export function GuitarKey({
   note,
   synth,
   index,
+  fret,
 }: GuitarKeyProps): JSX.Element {
   return (
     <div
@@ -35,8 +36,8 @@ export function GuitarKey({
       })}
       style={{
         top: `${index}rem`,
-        left: 0,
-        width: `10rem`,
+        left: `${fret * 2}rem`,
+        width: `2rem`,
         marginLeft: '4rem',
       }}
     ></div>
@@ -45,17 +46,14 @@ export function GuitarKey({
 
 function Guitar({ synth, setSynth }: InstrumentProps): JSX.Element {
   // guitar keys have 7 notes in an octave
-  const keys = List([
-    { note: 'C', idx: 0 },
-    { note: 'D', idx: 1 },
-    { note: 'E', idx: 2 },
-    { note: 'F', idx: 3 },
-    { note: 'G', idx: 4 },
-    { note: 'A', idx: 5 },
-    { note: 'B', idx: 6 },
+  let chords = List([
+    { chord: 'E', idx: 0, octive: 4 },
+    { chord: 'B', idx: 1, octive: 4 },
+    { chord: 'G', idx: 2, octive: 3 },
+    { chord: 'D', idx: 3, octive: 3 },
+    { chord: 'A', idx: 4, octive: 2 },
+    { chord: 'E', idx: 5, octive: 2 },
   ])
-
-
 
   // set the oscillator type
   const setOscillator = (newType: Tone.ToneOscillatorType) => {
@@ -101,21 +99,25 @@ function Guitar({ synth, setSynth }: InstrumentProps): JSX.Element {
               </div>
             ))}
           </div>
-          <div className="flex flex-row">
-            {Range(0, 2).map(octave => (
-              <div key={octave} className="flex flex-column">
-                {keys.map(({ note, idx }) => (
+
+          {Range(0, 21).map(fret => (
+            <div key={fret} className="flex flex-column">
+              {chords.map(({ chord, idx, octive }) => {
+                // create a note from chord, octave, and fret
+                const note = Tone.Frequency(`${chord}${octive}`).transpose(fret).toNote();
+
+                return (
                   <GuitarKey
-                    key={`${note}${octave}`}
-                    note={`${note}${octave}`}
-                    synth={synth}
-                    octave={octave}
-                    index={idx + octave * 7} 
-                    fret={0}/>
-                ))}
-              </div>
-            ))}
-          </div>
+                  note={`${note}`}
+                  synth={synth}
+                  octave={0}
+                  index={idx} 
+                  fret={fret}/> 
+                )
+
+            })}
+            </div>
+          ))}
         </div>
       </div>
     </div>
