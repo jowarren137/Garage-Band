@@ -47,12 +47,12 @@ export function GuitarKey({
 function Guitar({ synth, setSynth }: InstrumentProps): JSX.Element {
   // guitar keys have 7 notes in an octave
   let chords = List([
-    { chord: 'E', idx: 0, octive: 4 },
-    { chord: 'B', idx: 1, octive: 4 },
-    { chord: 'G', idx: 2, octive: 3 },
-    { chord: 'D', idx: 3, octive: 3 },
-    { chord: 'A', idx: 4, octive: 2 },
-    { chord: 'E', idx: 5, octive: 2 },
+    { chord: 'E', idx: 0, octave: 4 },
+    { chord: 'B', idx: 1, octave: 4 },
+    { chord: 'G', idx: 2, octave: 3 },
+    { chord: 'D', idx: 3, octave: 3 },
+    { chord: 'A', idx: 4, octave: 2 },
+    { chord: 'E', idx: 5, octave: 2 },
   ])
 
   // set the oscillator type
@@ -102,9 +102,9 @@ function Guitar({ synth, setSynth }: InstrumentProps): JSX.Element {
 
           {Range(0, 21).map(fret => (
             <div key={fret} className="flex flex-column">
-              {chords.map(({ chord, idx, octive }) => {
+              {chords.map(({ chord, idx, octave }) => {
                 // create a note from chord, octave, and fret
-                const note = Tone.Frequency(`${chord}${octive}`).transpose(fret).toNote();
+                const note = Tone.Frequency(`${chord}${octave}`).transpose(fret).toNote();
 
                 return (
                   <GuitarKey
