@@ -123,5 +123,5 @@ function DrumKit({ synth, setSynth }: InstrumentProps): JSX.Element {
   );
 }
 
-export const DrumKitInstrument = new Instrument('Drum Kit', DrumKit);
+export const DrumKitInstrument = new Instrument('jowarren137', DrumKit);
 

@@ -6,7 +6,8 @@ import { PianoInstrument } from './instruments/Piano';
 import { GuitarInstrument } from './instruments/Guitar';
 import { BassGuitarInstrument } from './instruments/Bass';
 import { WaveformVisualizer } from './visualizers/Waveform';
-import { DrumKitInstrument } from './instruments/DrumKit';
+import { DrumKitInstrument } from './instruments/jowarren137';
+import { DJPartyVisualizer } from './visualizers/jowarren137';
 
 
 /** ------------------------------------------------------------------------ **
@@ -18,13 +19,13 @@ export type AppState = Map<string, any>;           // similar to { [id: string]:
  * Start with the default piano instrument.
  * Add your instruments to this list.
  */
-const instruments = List([PianoInstrument, DrumKitInstrument, GuitarInstrument, BassGuitarInstrument]);       // similar to Instrument[]
+const instruments = List([PianoInstrument, DrumKitInstrument, GuitarInstrument, BassGuitarInstrument]);  // similar to Instrument[]
 
 /**
  * Start with the default waveform visualizer.
  * Add your visualizers to this list.
  */
-const visualizers = List([WaveformVisualizer]);    // similar to Visualizer[]
+const visualizers = List([WaveformVisualizer, DJPartyVisualizer]);    // similar to Visualizer[]
 
 
 /**
