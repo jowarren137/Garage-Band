@@ -14,7 +14,7 @@ export const EllipseVisualizer = new Visualizer(
     p5.background(0, 0, 0, 255);
 
     const values = analyzer.getValue();
-    const numberOfShapes = 10; // Number of shapes
+    const numberOfShapes = 10; // Number of shapes (ellipses)
 
     for (let i = 0; i < numberOfShapes; i++) {
       const amplitude = values[i % values.length] as number;

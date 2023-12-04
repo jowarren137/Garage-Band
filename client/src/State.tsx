@@ -9,7 +9,8 @@ import { WaveformVisualizer } from './visualizers/Waveform';
 import { DrumKitInstrument } from './instruments/jowarren137';
 import { DJPartyVisualizer } from './visualizers/jowarren137';
 import { TriangleInstrument } from './instruments/pranavmital';
-
+import { EllipseVisualizer } from './visualizers/pranavmital';
+import { DiamondVisualizer } from './visualizers/pranavmital_viz2';
 
 /** ------------------------------------------------------------------------ **
  * The entire application state is stored in AppState.
@@ -26,7 +27,7 @@ const instruments = List([PianoInstrument, DrumKitInstrument, GuitarInstrument, 
  * Start with the default waveform visualizer.
  * Add your visualizers to this list.
  */
-const visualizers = List([WaveformVisualizer, DJPartyVisualizer]);    // similar to Visualizer[]
+const visualizers = List([WaveformVisualizer, DJPartyVisualizer, DiamondVisualizer, EllipseVisualizer]);    // similar to Visualizer[]
 
 
 /**
