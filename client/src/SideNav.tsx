@@ -1,7 +1,7 @@
 // 3rd party library imports
 import classNames from 'classnames';
 import { List } from 'immutable';
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import {
   RadioButton20,
@@ -156,7 +156,21 @@ function SongsNav({ state, dispatch }: SideNavProps): JSX.Element {
    *  |-----------------|
   */
 
+  //Implementing filter.... 
   const songs: List<any> = state.get('songs', List());
+  // const [searchTerm, setSearchTerm] = useState("");
+  // const [currentSongId, setCurrentsongId] = useState("");
+
+  // const filteredSongs = songs.filter((song) => 
+  //   song.get("song_title").toLowerCase().includes(searchTerm.toLowerCase)
+  //   );
+
+  // const handleSearchInputChange = (
+  //   event: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   setSearchTerm(event.target.value);
+  // };
+
   return (
     <Section title="Playlist">
       {songs.map(song => (
