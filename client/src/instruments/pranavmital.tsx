@@ -1,79 +1,89 @@
+// Violin.tsx
+// 3rd party library imports
 import * as Tone from 'tone';
-import classNames from 'classnames';
-import React from 'react';
+import React, { useState } from 'react';
+
+// project imports
 import { Instrument, InstrumentProps } from '../Instruments';
 
-interface TriangleKeyProps {
-  position: { top: string, left: string, transform: string };
-  synth?: Tone.Synth;
+/** ------------------------------------------------------------------------ **
+ * Contains implementation of components for Violin.
+ ** ------------------------------------------------------------------------ */
+
+interface ViolinStringProps {
+  stringNumber: number; // Number of the string on the violin
+  synth?: Tone.Synth; // Tone.js Synth for sound generation
 }
 
-function calculateSound(position: { top: string, left: string }): string {
-  const notes = ['C5', 'D5', 'E5', 'F5', 'G5', 'A5', 'B5'];
-  return notes[Math.floor(Math.random() * notes.length)];
-}
-
-export function TriangleKey({
-  position,
+export function ViolinString({
+  stringNumber,
   synth,
-}: TriangleKeyProps): JSX.Element {
-  const sound = calculateSound(position);
+}: ViolinStringProps): JSX.Element {
+  const [isBowActive, setIsBowActive] = useState(false);
+
+  const handleMouseDown = (event: React.MouseEvent) => {
+    setIsBowActive(true);
+    playNoteBasedOnPosition(event);
+  };
+
+  const handleMouseUp = () => {
+    setIsBowActive(false);
+    synth?.triggerRelease();
+  };
+
+  const handleMouseMove = (event: React.MouseEvent) => {
+    if (isBowActive) {
+      playNoteBasedOnPosition(event);
+    }
+  };
+
+  const playNoteBasedOnPosition = (event: React.MouseEvent) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = event.clientX - rect.left; // x position within the element
+    const stringLength = rect.width;
+    const notePosition = x / stringLength; // Position along the string
+
+    // Calculate note frequency based on position
+    const baseFrequency = Tone.Frequency(`${Violin.notes[stringNumber]}4`).toFrequency();
+    const frequency = baseFrequency + (baseFrequency * notePosition * 0.2); // Adjust frequency based on position
+
+    synth?.triggerAttack(frequency);
+  };
 
   return (
     <div
-      onMouseDown={() => synth?.triggerAttack(sound)}
-      onMouseUp={() => synth?.triggerRelease('+0.25')}
-      className={classNames('ba pointer absolute dim')}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp} // Stop sound when mouse leaves string area
+      onMouseMove={handleMouseMove}
+      className="ba bg-dark-gray"
       style={{
-        ...position,
-        width: '8px',
-        height: '8px',
-        borderRadius: '50%',
-        backgroundColor: 'transparent',
-        boxShadow: 'none',
-        color: '#D8D8D8'
+        position: 'absolute',
+        top: `${stringNumber * 25 + 10}%`,
+        left: '10%',
+        right: '10%',
+        height: '3px',
       }}
     ></div>
   );
 }
 
-function Triangle({ synth, setSynth }: InstrumentProps): JSX.Element {
-  const triangleEdges = [];
-  const size = 100; // size of the triangle
-
-  for (let i = 0; i <= size; i++) {
-    const percentage = i / size * 100;
-    // Left edge
-    triangleEdges.push({ top: `${100 - percentage}%`, left: `${percentage / 2}%`, transform: 'translate(0, -50%)' });
-    // Right edge
-    triangleEdges.push({ top: `${100 - percentage}%`, left: `${100 - percentage / 2}%`, transform: 'translate(-100%, -50%)' });
-    // Bottom edge
-    if (i !== 0 && i !== size) { // avoid duplicate points at the corners
-      triangleEdges.push({ top: '100%', left: `${percentage}%`, transform: 'translate(-50%, 0%)' });
-    }
-  }
-
-  React.useEffect(() => {
-    setSynth(oldSynth => {
-      if (oldSynth) {
-        oldSynth.dispose();
-      }
-      return new Tone.Synth().toDestination();
-    });
-  }, [setSynth]);
-
+function Violin({ synth, setSynth }: InstrumentProps): JSX.Element {
   return (
-    <div className="triangle-instrument" style={{ position: 'relative', height: `${size}px`, width: `${size}px`, margin: '50px auto' }}>
-      {/* ... */}
-      {triangleEdges.map((position, index) => (
-        <TriangleKey
-          key={`edge-${index}`}
-          position={position}
-          synth={synth}
-        />
-      ))}
+    <div className="pv4">
+      <div className="relative dib h4 w-100 ml4">
+        {Array.from({ length: 4 }).map((_, index) => (
+          <ViolinString
+            key={`string-${index}`}
+            stringNumber={index}
+            synth={synth}
+          />
+        ))}
+      </div>
     </div>
   );
 }
 
-export const TriangleInstrument = new Instrument('Triangle (idiophone)', Triangle);
+Violin.notes = ['G', 'D', 'A', 'E']; // Standard tuning for a violin
+
+export const ViolinInstrument = new Instrument('Violin', Violin);
