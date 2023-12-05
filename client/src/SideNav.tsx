@@ -163,6 +163,7 @@ function SongsNav({ state, dispatch }: SideNavProps): JSX.Element {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentSongId, setCurrentsongId] = useState("");
 
+  //Figure out where the rendering issue occurs....
   // const filteredSongs = songs.filter((song) => 
   //   song.get("song_title").toLowerCase().includes(searchTerm.toLowerCase));
 
