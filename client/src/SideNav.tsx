@@ -8,6 +8,8 @@ import {
   RadioButtonChecked20,
   Music20,
 } from '@carbon/icons-react';
+import "./SongsNav.css";
+
 
 // project imports
 import { DispatchAction } from './Reducer';
@@ -91,7 +93,7 @@ export function SideNav({ state, dispatch }: SideNavProps): JSX.Element {
   const location = useLocation();
 
   return (
-    <Section title="Instruments">
+    <Section title="Instruments" height="h-25">
       {instruments.map(i => (
         <RadioButton
           key={i.name}
@@ -124,7 +126,7 @@ function VisualizersNav({ state }: SideNavProps): JSX.Element {
   const location = useLocation();
 
   return (
-    <Section title="Visualizers">
+    <Section title="Visualizers" height="h-50">
       {visualizers.map(v => (
         <RadioButton
           key={v.name}
@@ -158,12 +160,11 @@ function SongsNav({ state, dispatch }: SideNavProps): JSX.Element {
 
   //Implementing filter.... 
   const songs: List<any> = state.get('songs', List());
-  // const [searchTerm, setSearchTerm] = useState("");
-  // const [currentSongId, setCurrentsongId] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentSongId, setCurrentsongId] = useState("");
 
   // const filteredSongs = songs.filter((song) => 
-  //   song.get("song_title").toLowerCase().includes(searchTerm.toLowerCase)
-  //   );
+  //   song.get("song_title").toLowerCase().includes(searchTerm.toLowerCase));
 
   // const handleSearchInputChange = (
   //   event: React.ChangeEvent<HTMLInputElement>
@@ -172,8 +173,17 @@ function SongsNav({ state, dispatch }: SideNavProps): JSX.Element {
   // };
 
   return (
-    <Section title="Playlist">
-      {songs.map(song => (
+    <Section title="Playlist" height="h-50">
+      <div>
+        <input 
+          type="text"
+          className="search-bar"
+          value={searchTerm}
+          placeholder="Search songs"
+         // onChange={handleSearchInputChange}
+        />
+      </div>
+      {songs.map((song) => (
         <div
           key={song.get('id')}
           className="f6 pointer underline flex items-center no-underline i dim"
@@ -228,9 +238,12 @@ function RadioButton({ to, text, active, onClick }: RadioButtonProps): JSX.Eleme
  * Section
  ** ------------------------------------- */
 
-const Section: React.FC<{ title: string }> = ({ title, children }) => {
+const Section: React.FC<{ title: string; height: string}> = ({ title, children, height }) => {
   return (
-    <div className="flex flex-column h-25 bb b--light-gray pa3">
+    <div className={`"flex flex-column h-25 bb b--light-gray pa3 ${
+      height ? `h-${height}` : ""
+    }`}
+    >
       <div className="fw7 mb2">{title} </div>
       <div className="flex-auto overflow-scroll">{children}</div>
     </div>

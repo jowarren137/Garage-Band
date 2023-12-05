@@ -1,0 +1,28 @@
+.random-song {
+    color: red;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    font-weight: bold;
+    padding-top: 2px;
+    padding-bottom: 8px;
+    padding-left: 8px;
+  }
+  
+  .random-song:hover {
+    color: blue;
+  }
+  
+  .search-bar {
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 8px;
+    margin-bottom: 16px;
+    width: 100%;
+    transition: border-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+  }
+  
+  .search-bar:focus {
+    border: 4px solid;
+    border-color: #0072c3;
+    box-shadow: 0 0 3px 1px rgba(0, 114, 195, 0.3);
+  }
