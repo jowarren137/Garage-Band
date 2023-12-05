@@ -9,7 +9,9 @@ import { BassGuitarInstrument } from './instruments/Bass';
 import { WaveformVisualizer } from './visualizers/Waveform';
 import { DrumKitInstrument } from './instruments/jowarren137';
 import { DJPartyVisualizer } from './visualizers/jowarren137';
-
+import { TriangleInstrument } from './instruments/pranavmital';
+import { EllipseVisualizer } from './visualizers/pranavmital';
+import { DiamondVisualizer } from './visualizers/pranavmital_viz2';
 
 /** ------------------------------------------------------------------------ **
  * The entire application state is stored in AppState.
@@ -20,13 +22,13 @@ export type AppState = Map<string, any>;           // similar to { [id: string]:
  * Start with the default piano instrument.
  * Add your instruments to this list.
  */
-const instruments = List([PianoInstrument, DrumKitInstrument, GuitarInstrument, BassGuitarInstrument]);  // similar to Instrument[]
+const instruments = List([PianoInstrument, DrumKitInstrument, GuitarInstrument, BassGuitarInstrument, TriangleInstrument]);  // similar to Instrument[]
 
 /**
  * Start with the default waveform visualizer.
  * Add your visualizers to this list.
  */
-const visualizers = List([WaveformVisualizer, DJPartyVisualizer, CircleVisualizer]);    // similar to Visualizer[]
+const visualizers = List([WaveformVisualizer, DJPartyVisualizer, DiamondVisualizer, EllipseVisualizer, CircleVisualizer]);    // similar to Visualizer[]
 
 
 /**
