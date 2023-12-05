@@ -11,21 +11,24 @@ export const CircleVisualizer = new Visualizer(
         const dim = Math.min(width, height);
 
         p5.background(0, 0, 0, 255);
-        p5.strokeWeight(dim * 0.01);
+        p5.strokeWeight(3);
 
-        // just draw a circle
-        p5.stroke(255, 255, 255, 255);
         p5.noFill();
-        p5.circle(width / 2, height / 2, dim * 0.9);
-
-
-        // draw a curve that shadows the circle that follows the waveform
         p5.stroke(255, 255, 255, 255);
-        p5.noFill();
-        p5.beginShape();
+
+        p5.translate(width/2, height/2);
+
         const values = analyzer.getValue();
-        
+        p5.beginShape();
+        for(let i = 0; i<values.length; i++){
+            let r = p5.map(values[i] as number, 0, 1, 100, height/2);
+            let x = r * p5.cos(i);
+            let y = r * p5.sin(i);
+            p5.vertex(x, y);
+        }
         p5.endShape();
+        
+        
 
 
     },
