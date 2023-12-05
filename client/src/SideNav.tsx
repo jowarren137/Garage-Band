@@ -158,18 +158,18 @@ function SongsNav({ state, dispatch }: SideNavProps): JSX.Element {
 
   //Implementing filter.... 
   const songs: List<any> = state.get('songs', List());
-  // const [searchTerm, setSearchTerm] = useState("");
-  // const [currentSongId, setCurrentsongId] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentSongId, setCurrentsongId] = useState("");
 
-  // const filteredSongs = songs.filter((song) => 
-  //   song.get("song_title").toLowerCase().includes(searchTerm.toLowerCase)
-  //   );
+  const filteredSongs = songs.filter((song) => 
+    song.get("song_title").toLowerCase().includes(searchTerm.toLowerCase)
+    );
 
-  // const handleSearchInputChange = (
-  //   event: React.ChangeEvent<HTMLInputElement>
-  // ) => {
-  //   setSearchTerm(event.target.value);
-  // };
+  const handleSearchInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setSearchTerm(event.target.value);
+  };
 
   return (
     <Section title="Playlist">
